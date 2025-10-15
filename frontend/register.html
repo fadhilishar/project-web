@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daftar Les Privat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+
+    <h1>Form Pendaftaran</h1><br>
+    <form id="formDaftar">
+      <input type="text" id="nama" placeholder="Nama" required><br>
+      <input type="email" id="email" placeholder="Email" required><br>
+      <label for="matpel"></label>
+      <select id="matpel" required>
+        <option value="">-- Pilih Mata Pelajaran --</option>
+        <option value="matematika1">Matematika SD</option>
+        <option value="matematika2">Matematika SMP</option>
+        <option value="matematika3">Matematika SMA</option>
+        <option value="ipa">IPA SD</option>
+        <option value="fisika1">Fisika SMP</option>
+        <option value="fisika2">Fisika SMA</option>
+        <option value="kimia1">Kimia SMP</option>
+        <option value="kimia2">Kimia SMA</option>
+        <option value="biologi1">Biologi SMP</option>
+        <option value="biologi2">Biologi SMA</option>
+        <option value="ips">IPS SD</option>
+        <option value="ips">IPS SMP</option>
+        <option value="sosiologi">Sosiologi</option>
+        <option value="sejarah">Sejarah</option>
+        <option value="bahasaIndonesia1">Bahasa Indonesia SD</option>
+        <option value="bahasaIndonesia2">Bahasa Indonesia SMP</option>
+        <option value="bahasaIndonesia3">Bahasa Indonesia SMA</option>
+        <option value="bahasaInggris1">Bahasa Inggris SD</option>
+        <option value="bahasaInggris2">Bahasa Inggris SMP</option>
+        <option value="bahasaInggris3">Bahasa Inggris SMA</option>
+        <option value="bahasaJepang">Bahasa Jepang</option>
+        <option value="bahasaRusia">Bahasa Rusia</option>
+        <option value="bahasaJerman">Bahasa Jerman</option>
+      </select><br>
+      <label for="jadwal"></label>
+      <select id="jadwal" required>
+        <option value="">-- Pilih Jadwal --</option>
+        <option value="seninPagi">Senin 07.00-08.00</option>
+        <option value="seninSore">Senin 16.00-17.00</option>
+        <option value="jumatPagi">Jumat 07.00-08.00</option>
+        <option value="sabtuPagi">Sabtu 07.00-08.00</option>
+      </select><br>
+      <input type="text" id="noHp" placeholder="Nomor HP" required><br>
+      <button type="submit">Kirim</button>
+    </form>
+    <p id="response"></p>
+  </div>
+
+  <script src="script.js">
+  // <script>
+  //   document.getElementById("registerForm").addEventListener("submit", async (e) => {
+  // e.preventDefault();
+  // const data = {
+  //   name: document.getElementById("nama").value,
+  //   email: document.getElementById("email").value,
+  //   matpel: document.getElementById("matpel").value,
+  //   schedule: document.getElementById("schedule").value,
+  //   noHp:document.getElementById("noHP").value,
+  // };
+
+  // await fetch("/api/register", {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(data)
+  // });
+
+//   alert("Data terkirim!");
+// });
+  </script>
+</body>
+</html>
