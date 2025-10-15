@@ -11,6 +11,7 @@ type Registration struct {
 	Nama   string `json:"nama"`
 	Email  string `json:"email"`
 	Matpel string `json:"matpel"`
+	Durasi string `json:"durasi"`
 	Jadwal string `json:"jadwal"`
 	NoHP   string `json:"noHp"`
 }

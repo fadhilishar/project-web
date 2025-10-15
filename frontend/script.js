@@ -22,6 +22,7 @@ document.getElementById("formDaftar").addEventListener("submit", async (e) => {
     nama: document.getElementById("nama").value,
     email: document.getElementById("email").value,
     matpel: document.getElementById("matpel").value,
+    durasi: document.getElementById("durasi").value,
     jadwal:document.getElementById("jadwal").value,
     noHp: document.getElementById("noHp").value,
   };
