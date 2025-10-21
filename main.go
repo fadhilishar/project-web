@@ -1,13 +1,18 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-type Registration struct {
+type Pendaftar struct {
+	ID     uint   `gorm:"primaryKey;autoIncrement" json:"id"`
 	Nama   string `json:"nama"`
 	Email  string `json:"email"`
 	Matpel string `json:"matpel"`
@@ -16,9 +21,40 @@ type Registration struct {
 	NoHP   string `json:"noHp"`
 }
 
-var registrations []Registration
+var registrations []Pendaftar
+var db *sql.DB
+var err error
+
+func initDB() *gorm.DB {
+	dsn := "root:password@tcp(127.0.0.1:3306)/project_web?charset=utf8mb4&parseTime=True&loc=Local"
+	// fmt.Println("dsn", dsn)
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatal("Gagal konek database:", err)
+	}
+
+	sqlDB, err := db.DB()
+	if err != nil {
+		log.Fatalf("❌ Gagal ambil koneksi SQL: %v", err)
+	}
+
+	if err = sqlDB.Ping(); err != nil {
+		log.Fatalf("❌ Database belum bisa diakses: %v", err)
+	}
+
+	// Auto migrate tabel dari struct
+	if err = db.AutoMigrate(&Pendaftar{}); err != nil {
+		log.Fatalf("❌ Gagal migrate: %v", err)
+	}
+
+	fmt.Println("✅ Berhasil terkoneksi ke database MySQL!")
+	return db
+}
 
 func main() {
+	// 🔗 Koneksi ke MySQL
+	initDB()
+
 	r := gin.Default()
 
 	// Serve static frontend
@@ -26,7 +62,7 @@ func main() {
 
 	// API: menerima pendaftaran
 	r.POST("/daftar", func(c *gin.Context) {
-		var reg Registration
+		var reg Pendaftar
 		if err := c.BindJSON(&reg); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
 			return
@@ -41,7 +77,7 @@ func main() {
 
 		registrations = append(registrations, reg)
 		c.JSON(http.StatusOK, gin.H{
-			"message": "Registration received!",
+			"message": "Data pendaftar berhasil diregistrasi!",
 			"data":    reg,
 		})
 	})
